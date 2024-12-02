@@ -1,13 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>String Transformers</title>
     <link rel="stylesheet" href="./styles.css">
 </head>
+
 <body>
-    
+    <div class="container">
+        <input type="text" id="input-box" value="this is a normal sentence to transform">
+        <div class="row" id="lower-case">
+            <label>Lower Case</label>
+            <p id="lower-case-p"></p>
+        </div>
+        <div class="row" id="upper-case">
+            <label>Upper Case</label>
+            <p id="upper-case-p"></p>
+        </div>
+        <div class="row" id="camel-case">
+            <label>Camel Case</label>
+            <p id="camel-case-p"></p>
+        </div>
+        <div class="row" id="pascal-case">
+            <label>Pascal Case</label>
+            <p id="pascal-case-p"></p>
+        </div>
+        <div class="row" id="snake-case">
+            <label>Snake Case</label>
+            <p id="snake-case-p"></p>
+        </div>
+        <div class="row" id="kebab-case">
+            <label>Kebab Case</label>
+            <p id="kebab-case-p"></p>
+        </div>
+        <div class="row" id="trim">
+            <label>Trim</label>
+            <p id="trim-p"></p>
+        </div>
+    </div>
     <script src="./script.js"></script>
 </body>
+
 </html>
