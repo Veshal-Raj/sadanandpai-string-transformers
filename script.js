@@ -16,96 +16,61 @@ let pTrim = document.getElementById("trim-p");
 
 
 window.onload = () => {
-    lowerCase(inputBox.value)
-    upperCase(inputBox.value)
-    camelCase()
-    pascalCase()
-    snakeCase()
-    kebabCase()
-    trim()
+    modifyAllCases()
 }
 
 inputBox.addEventListener("input", modifyAllCases)
 
 function modifyAllCases() {
-    lowerCase(inputBox.value)
-    upperCase(inputBox.value)
-    camelCase()
-    pascalCase()
-    snakeCase()
-    kebabCase()
-    trim()
+    modifyText("lowercase");
+    modifyText("uppercase");
+    modifyText("camelcase");
+    modifyText("pascalcase");
+    modifyText("snakecase");
+    modifyText("kebabcase");
+    modifyText("trim");
 }
 
-function lowerCase(input) {
-    pLowerCase.textContent = input.toLowerCase();
-}
-
-function upperCase(input) {
-    pUpperCase.textContent = input.toUpperCase();
-}
-
-function camelCase() {
-    let arr = inputBox.value.split(" ");
-    let str = ""
-    for (let i = 0; i < arr.length; i++) {
-        if (i > 0) {
-            let fLetter = arr[i].charAt(0).toUpperCase();
-            let letters = arr[i].slice(1).toLowerCase();
-            let fullLetters = fLetter + letters;
-            str += fullLetters;
-        } else {
-            str += arr[i];
-        }
+function modifyText(format) {
+    switch (format) {
+        case "lowercase":
+            pLowerCase.textContent = inputBox.value.toLowerCase();
+            break;
+        case "uppercase":
+            pUpperCase.textContent = inputBox.value.toUpperCase()
+            break;
+        case "camelcase":
+            const camelcaseStr = inputBox.value.split(" ").reduce((acc, curr, index) => {
+                return index > 0 ? acc + curr.charAt(0).toUpperCase() + curr.slice(1).toLowerCase() : acc + curr;  
+            })
+            pCamelCase.textContent = camelcaseStr;
+            break;
+        case "pascalcase":
+            const pascalcaseStr = inputBox.value.split(" ").reduce((acc, curr, index) => {
+                return acc + curr.charAt(0) + curr.slice(1).toLowerCase();
+            })
+            pPascalCase.textContent = pascalcaseStr;
+            break;
+        case "snakecase":
+            const snakecaseStr = inputBox.value.split(" ").reduce((acc, curr, index) => {
+                return index > 0 ? acc + "_" + curr : acc + curr;
+            })
+            pSnakeCase.textContent = snakecaseStr;                                                           
+            break;
+        case "kebabcase":
+            const kebabcaseStr = inputBox.value.split(" ").reduce((acc, curr, index) => {
+                return index > 0 ? acc + "-" + curr : acc + curr;
+            })
+            pKebabCase.textContent = kebabcaseStr;
+            break;
+        case "trim":
+            const trimStr = inputBox.value.split(" ").reduce((acc, curr, index) => {
+                return acc + curr;
+            })
+            pTrim.textContent = trimStr;
+            break;
+        default:
+            console.error("Unsupported format:", format);
+            break;
     }
-    pCamelCase.textContent = str;
-}
-
-function pascalCase() {
-    let arr = inputBox.value.split(" ");
-    let str = "";
-    for (const element of arr) {
-        let fLetter = element.charAt(0).toUpperCase();
-        let letters = element.slice(1).toLowerCase();
-        let fullLetters = fLetter + letters;
-        str += fullLetters;
-    }
-    pPascalCase.textContent = str;
-}
-
-function snakeCase() {
-    let arr = inputBox.value.split(" ");
-    let str3 = "";
-    for (let i = 0; i < arr.length; i++) {
-        if (i > 0) {
-            let letters = "_" + arr[i];
-            str3 += letters;
-        } else {
-            str3 += arr[i];
-        }
-    }
-    pSnakeCase.textContent = str3;
-}
-
-function kebabCase() {
-    let arr = inputBox.value.split(" ");
-    let str4 = "";
-    for (let i = 0; i < arr.length; i++) {
-        if (i > 0) {
-            let letters = "-" + arr[i];
-            str4 += letters;
-        } else {
-            str4 += arr[i];
-        }
-    }
-    pKebabCase.textContent = str4;
-}
-
-function trim() {
-    let arr = inputBox.value.split(" ");
-    let str5 = "";
-    for (const element of arr) {
-        str5 += element
-    }
-    pTrim.textContent = str5;
 }
